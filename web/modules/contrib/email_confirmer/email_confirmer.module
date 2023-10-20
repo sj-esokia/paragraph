@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file
+ * Email confirmation API and service.
+ */
+
+/**
+ * Implements hook_mail().
+ */
+function email_confirmer_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'confirmation_request':
+      $context = $params['context'];
+
+      // @todo recipient name?
+      $message['to'] = $params['context']['email_confirmer_confirmation']->getEmail();
+      $message['subject'] = \Drupal::token()->replace(\Drupal::config('email_confirmer.settings')->get('confirmation_request.subject'), $context, ['sanitize' => FALSE]);
+      $message['body'][] = \Drupal::token()->replace(\Drupal::config('email_confirmer.settings')->get('confirmation_request.body'), $context, ['sanitize' => FALSE]);
+      break;
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function email_confirmer_cron() {
+  // Purge old confirmations.
+  $lifetime = \Drupal::config('email_confirmer.settings')->get('confirmation_lifetime');
+  if (empty($lifetime)) {
+    // No purge.
+    return;
+  }
+
+  $confirmation_storage = \Drupal::entityTypeManager()
+    ->getStorage('email_confirmer_confirmation');
+  $old_confirmations = $confirmation_storage->getQuery()
+    ->condition('created', \Drupal::time()->getRequestTime() - $lifetime, '<')
+    ->accessCheck(FALSE)
+    ->execute();
+
+  if (!empty($old_confirmations)) {
+    $confirmation_storage->delete($confirmation_storage->loadMultiple($old_confirmations));
+    \Drupal::logger('email_confirmer')->info('Purged @count old email confirmations.', ['@count' => count($old_confirmations)]);
+  }
+}

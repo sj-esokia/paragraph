@@ -1,0 +1,7 @@
+block.settings.socialmedia_social_media_block:
+  type: block_settings
+  label: 'social media block block'
+  mapping:
+    example:
+      type: string
+      label: Example

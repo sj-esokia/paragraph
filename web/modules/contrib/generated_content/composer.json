@@ -1,0 +1,27 @@
+{
+    "name": "drupal/generated_content",
+    "description": "Drupal module to programmatically generate content.",
+    "license": "GPL-2.0-or-later",
+    "type": "drupal-module",
+    "keywords": [
+        "drupal",
+        "generate",
+        "random"
+    ],
+    "authors": [
+        {
+            "name": "Alex Skrypnyk",
+            "email": "alex@drevops.com",
+            "homepage": "https://www.drupal.org/u/alexskrypnyk",
+            "role": "Maintainer"
+        }
+    ],
+    "homepage": "https://drupal.org/project/generated_content",
+    "support": {
+        "issues": "https://drupal.org/project/issues/generated_content",
+        "source": "https://git.drupalcode.org/project/generated_content"
+    },
+    "suggest": {
+        "drupal/config_ignore": "Ignore certain configuration during import."
+    }
+}

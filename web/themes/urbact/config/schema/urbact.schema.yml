@@ -1,0 +1,8 @@
+# Schema for the configuration files of the urbact theme.
+urbact.settings:
+  type: theme_settings
+  label: 'urbact settings'
+  mapping:
+    example:
+      type: string
+      label: Example
