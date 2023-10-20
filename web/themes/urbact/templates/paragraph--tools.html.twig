@@ -1,0 +1,7 @@
+<div class="div-tool-all">
+  <div class="div-tool-title">{{ content['field_tool_title'] }}</div>
+  {% set url = path('entity.node.canonical', {'node': content.field_button['#items'].entity.nid.value}) %}
+  <div class="div-tool-link">
+    <a href="{{ url }}" class="see-more-button">SEE MORE</a>
+  </div>
+</div>
