@@ -1,14 +1,20 @@
 <div class="div-highlight-all">
-  <div class="div-highlight-title">
-    <h1 class="content-title">{{ content.field_title }}</h1>
-  </div>
-  <div class="div-highlight-description">
-    {{ content.field_description }}
-  </div>
-  <div class="div-highlight-author">
-    {{ content.field_author }}
-  </div>
   <div class="div-highlight-image">
     {{ content.field_image }}
   </div>
+  <div class="div-highlight-title">
+    <h2 class="content-title">{{ content.field_title }}</h2>
+  </div>
+  <div class="div-highlight-description">
+    <h3>{{ content.field_description }}</h3>
+  </div>
+  <div class="div-highlight-author">
+    <h4>{{ content.field_author }}</h4>
+  </div>
+  {% set link = "/node/" ~ content.field_title['#object'].parent_id.value %}
+<a href="{{ link }}"><button type="button" class="highlight-button">-></button></a>
+<a href="https://urbact.eu/whats-new/stories" target="_blank"><button class="show-more-button">
+SHOW MORE
+</button></a>
 </div>
+

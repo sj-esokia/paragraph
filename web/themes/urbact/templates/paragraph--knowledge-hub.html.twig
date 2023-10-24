@@ -4,14 +4,18 @@
   <div class="div-knowledgehub-description">{{ content['field_knowledgehubdescription'] }}</div>
   <div class="div-knowledgehub-image">{{ content['field_knowledge_image'] }}</div>
   <div class="div-knowledgehub-content">{{ content['field_knowledge'] }}</div>
-  {% set url = path('entity.node.canonical', {'node': content.field_button_value['#items'].entity.nid.value}) %}
+  {% if content.field_button_value['#items'].entity.nid.valuecontent.field_button_value['#items'].entity.nid.value is not empty %}
+    {% set url = path('entity.node.canonical', {'node': content.field_button_value['#items'].entity.nid.value}) %}
+  {%endif%}
   <div class="div-knowledgehub-link">
     <a href="{{ url }}" class="view-more-link">view more</a>
   </div>
 {% elseif content['field_knowledge_image']['#object'].get('field_knowledge_image').value is not null %}
   <div class="div-knowledgehub-image">{{ content['field_knowledge_image'] }}</div>
   <div class="div-knowledgehub-content">{{ content['field_knowledge'] }}</div>
-  {% set url = path('entity.node.canonical', {'node': content.field_button_value['#items'].entity.nid.value}) %}
+    {% if content.field_button_value['#items'].entity.nid.valuecontent.field_button_value['#items'].entity.nid.value is not empty %}
+    {% set url = path('entity.node.canonical', {'node': content.field_button_value['#items'].entity.nid.value}) %}
+  {%endif%}
   <div class="div-knowledgehub-link">
     <a href="{{ url }}" class="view-more-link">view more</a>
   </div>
